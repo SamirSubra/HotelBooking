@@ -1,0 +1,42 @@
+@import "responsive";
+
+@mixin ez-font($police, $weight: 400, $style: normal) {
+  font-family: $police;
+  font-weight: $weight;
+  @if $style != normal {
+    font-style: $style;
+  }
+}
+
+@mixin ez-font-size($font-size-desktop, $font-size-mobile: null) {
+  font-size: $font-size-desktop;
+  @if $font-size-mobile != null {
+    @include mobile {
+      font-size: $font-size-mobile;
+    }
+  }
+}
+
+@mixin ez-line-height($line-height-desktop, $line-height-mobile: null) {
+  line-height: $line-height-desktop;
+  @if $line-height-mobile != null {
+    @include mobile {
+      line-height: $line-height-mobile;
+    }
+  }
+}
+
+@mixin ez-letter-spacing($letter-spacing-desktop, $letter-spacing-mobile: null) {
+  letter-spacing: $letter-spacing-desktop;
+  @if $letter-spacing-mobile != null {
+    @include mobile {
+      letter-spacing: $letter-spacing-mobile;
+    }
+  }
+}
+
+@mixin font-smoothing($value: antialiased) {
+  font-smooth: $value;
+  -webkit-font-smoothing: $value;
+  -moz-osx-font-smoothing: grayscale;
+}

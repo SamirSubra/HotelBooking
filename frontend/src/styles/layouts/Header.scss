@@ -1,0 +1,28 @@
+//@import "../utils/_responsive";
+@import "../utils/variables";
+
+#header {
+  position: absolute;
+  top: 0;
+  z-index: 5;
+  width: 100%;
+  padding: 30px 0;
+
+  .navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      color: black;
+    }
+
+    &__logo {
+      font-size: 51px;
+    }
+  }
+
+  &.header-home .navigation a{
+      color: white;
+  }
+}

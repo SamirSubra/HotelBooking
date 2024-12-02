@@ -1,0 +1,107 @@
+@use "fonts";
+@use "responsive";
+@import "variables";
+@import "titles";
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-backface-visibility: hidden;
+  font-family: $Poppins;
+}
+
+body{
+  background-color: #FFFEF6;
+}
+// ========= CONTAINER ========= //
+.container {
+  width: 100%;
+  max-width: 1460px;
+  padding: 0 35px;
+  margin: 0 auto 0;
+}
+
+// ========= SMALL COMPONENT ========= //
+
+.logo{
+  font-family: Italianno;
+}
+
+ul{
+  list-style: inside;
+}
+// ========= COLORS ========= //
+
+.c {
+  &-primary {
+    color: $primary;
+  }
+}
+
+  .bg{
+    &-primary{
+      background-color: $primary;
+    }
+  }
+
+.white, .white span, .white p, .white p strong {
+  color: $white;
+}
+
+
+// ========== ANIMATION ========== //
+
+  .animation{
+
+    &-hidden{
+      opacity: 0;
+      visibility: hidden;
+      width: 0;
+      height: 0;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    &-visible{
+      opacity: 1;
+      visibility: visible;
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  // ========== TEXT ========== //
+  h1, .h1 {
+    @extend %heading-1;
+  }
+
+  h2, .h2 {
+    @extend %heading-2;
+  }
+
+  h3, .h3 {
+    @extend %heading-3;
+  }
+
+  p, .p {
+    @extend %paragraph;
+  }
+
+  .big-text {
+    @extend %big-text;
+  }
+
+  .small-text {
+    @extend %small-text;
+  }
+
+  // =========== reformat =========== //
+
+  a {
+    text-decoration: none;
+  }
+
+  img {
+    object-fit: cover;
+  }
+

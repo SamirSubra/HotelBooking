@@ -1,0 +1,23 @@
+@import "fonts";
+
+// STANDARDS COLORS
+$light-white: rgba(255, 255, 255, 0.80);
+$white: #ffffff;
+$gray: #949494;
+$light-gray: #E7E7E7;
+$black: #000000;
+
+// THEMED COLORS
+$primary: #51C566;
+$dark-green: #4C9A5A;
+$text: #000000;
+
+// FILTERS
+$primary-filter: brightness(0) saturate(100%) invert(12%) sepia(45%) saturate(4964%) hue-rotate(332deg) brightness(119%) contrast(103%);
+
+// FONT FAMILY
+$Poppins: "Poppins";
+$Italianno: "Italianno";
+
+// OTHER
+$border: 1px solid #00000017;

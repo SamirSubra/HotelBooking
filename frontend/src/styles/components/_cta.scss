@@ -1,0 +1,20 @@
+@import "@/styles/utils/_variables.scss";
+
+.cta{
+  background-color: $primary;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border: transparent;
+  border-radius: 15px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ;
+
+  &:hover{
+    background-color: $dark-green;
+  }
+}
