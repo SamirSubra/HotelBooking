@@ -1,0 +1,29 @@
+.double-buttons{
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  margin-top: 8px;
+}
+.btn{
+  font-weight: 700;
+  border-radius: 5px;
+  padding: 6px 11px;
+  border: transparent;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &.green{
+    background-color: #4C9A5A;
+
+    &:hover{
+      background-color: #31633c;
+    }
+  }
+  &.red{
+    background-color: #FC6969;
+    &:hover{
+      background-color: #c85151;
+    }
+  }
+}

@@ -7,8 +7,10 @@ import bedImg from "@/assets/images/icons/bed.png";
 import calendarImg from "@/assets/images/icons/calendar.png";
 import personImg from "@/assets/images/icons/person.png";
 import priceImg from "@/assets/images/icons/price.svg";
+import {HotelProps} from "../types/types.ts";
 
-const Hotel = () => {
+// const Hotel : React.FC<HotelProps> = (}) => {
+const Hotel : React.FC<HotelProps> = () => {
     return (
         <main id={"Hotel"}>
             <section className="section_1">

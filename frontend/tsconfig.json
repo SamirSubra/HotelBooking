@@ -8,7 +8,9 @@
     "baseUrl": ".",
     "paths" : {
       "@/*" : ["src/*"],
-      "@pages/*": ["src/pages/*"]
+      "@pages/*": ["src/pages/*"],
+      "@images/*": ["src/assets/images/*"],
+      "@icons/*": ["src/assets/images/icons/*"]
     }
   },
   "include": [
