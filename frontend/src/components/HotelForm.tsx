@@ -28,6 +28,28 @@ const HotelForm : React.FC<HotelFormData> = ({id}) => {
         }
     };
 
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+
+        try {
+            const response = await fetch(id ? `${HOTEL_API_URL}/${id}` : HOTEL_API_URL, {
+                method: id ? "PUT" : "POST",
+                body: formData,
+            });
+
+            if (response.ok) {
+                alert("Hotel saved successfully!");
+                // Redirige ou mets à jour l'interface
+            } else {
+                alert("Failed to save hotel.");
+            }
+        } catch (error) {
+            console.error("Error while saving the hotel:", error);
+            alert("An unexpected error occurred.");
+        }
+    };
+
     useEffect(() => {
         if(id){
             fetch(`${HOTEL_API_URL}/${id}`)
@@ -68,33 +90,39 @@ const HotelForm : React.FC<HotelFormData> = ({id}) => {
 
     return (
         <div className="container admin-create-hotel">
-            <form action={!id ? HOTEL_API_URL : `${HOTEL_API_URL}/${id}`} method="POST" encType="multipart/form-data">
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <h1>{!id ? "Create new hotel" : "Modify hotel"}</h1>
                 <div className="content">
                     <div className="left">
                         <div className="input">
                             <label htmlFor="name">Name</label>
-                            <input type="text" name="name" id="name" defaultValue={hotel?.name ?? ""} placeholder="Name" required/>
+                            <input type="text" name="name" id="name" defaultValue={hotel?.name ?? ""} placeholder="Name"
+                                   required/>
                         </div>
                         <div className="input">
                             <label htmlFor="name">Description</label>
-                            <input type="text" name="description" id="description" defaultValue={hotel?.description ?? ""} placeholder="Description (optional)"/>
+                            <input type="text" name="description" id="description"
+                                   defaultValue={hotel?.description ?? ""} placeholder="Description (optional)"/>
                         </div>
                         <div className="input">
                             <label htmlFor="location">Location</label>
-                            <input type="text" name="location" id="location" defaultValue={hotel?.location ?? ""} placeholder="Location"/>
+                            <input type="text" name="location" id="location" defaultValue={hotel?.location ?? ""}
+                                   placeholder="Location"/>
                         </div>
                         <div className="input">
                             <label htmlFor="name">Equipments</label>
-                            <input type="text" name="equipments" id="equipments" defaultValue={hotel?.equipments ?? ""} placeholder="Equipments (optional)"/>
+                            <input type="text" name="equipments" id="equipments" defaultValue={hotel?.equipments ?? ""}
+                                   placeholder="Equipments (optional)"/>
                         </div>
                         <div className="input">
                             <label htmlFor="location">Price / night</label>
-                            <input type="number" name="price" id="price" defaultValue={hotel?.price ?? ""} placeholder="Price / night" required/>
+                            <input type="number" name="price" id="price" defaultValue={hotel?.price ?? ""}
+                                   placeholder="Price / night" required/>
                         </div>
                         <div className="input">
                             <label htmlFor="stars">Stars</label>
-                            <input type="number" name="stars" id="stars" defaultValue={hotel?.stars ?? ""} placeholder="Stars" required/>
+                            <input type="number" name="stars" id="stars" defaultValue={hotel?.stars ?? ""}
+                                   placeholder="Stars" required/>
                         </div>
                     </div>
                     <div className="right">
@@ -118,7 +146,7 @@ const HotelForm : React.FC<HotelFormData> = ({id}) => {
                         ))}
                     </div>
                 </div>
-                <input type="submit" value={!id ? "Create" : "Modify"} className="cta" />
+                <input type="submit" value={!id ? "Create" : "Modify"} className="cta"/>
             </form>
         </div>
     );

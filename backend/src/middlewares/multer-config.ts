@@ -1,7 +1,7 @@
-import { Request } from 'express';
+import {Request} from 'express';
 import * as multer from 'multer';
 import * as path from 'path';
-import { FileFilterCallback } from 'multer';
+import {FileFilterCallback} from 'multer';
 import * as fs from 'fs';
 
 type DestinationCallback = (error: Error | null, destination: string) => void;
@@ -13,40 +13,28 @@ const MIME_TYPES: { [key: string]: string } = {
 };
 
 // Path to the images folder in your backend
-const imageDirectory = path.join(process.cwd(), 'backend','images');
+const imageDirectory = path.join(process.cwd(), 'backend', 'images');
 
 
 // Ensure the directory exists
 if (!fs.existsSync(imageDirectory)) {
-    fs.mkdirSync(imageDirectory, { recursive: true });
+    fs.mkdirSync(imageDirectory, {recursive: true});
 }
 
-// Multer storage configuration
+// Multer storage configuration.
 export const fileStorage = multer.diskStorage({
-    destination: (
-        req: Request,
-        file: Express.Multer.File,
-        callback: DestinationCallback
-    ): void => {
-        callback(null, imageDirectory); // Use the absolute path for the image directory
+    destination: (req: Request, file: Express.Multer.File, callback: DestinationCallback): void => { // Tells Multer where to save files.
+        callback(null, imageDirectory); // indicates where to save the downloaded file
     },
-    filename: (
-        req: Request,
-        file: Express.Multer.File,
-        callback: FileNameCallback
-    ): void => {
+    filename: (req: Request, file: Express.Multer.File, callback: FileNameCallback): void => { // Sets the name of the downloaded file
         const name = file.originalname.split(' ').join('_').split('.')[0]; // Remove the existing extension
         const extension = MIME_TYPES[file.mimetype];
-        callback(null, `${name}_${Date.now()}.${extension}`); // Set the filename with a timestamp
+        callback(null, `${name}_${Date.now()}.${extension}`); // Set the filename with a timestamp when downloaded
     },
 });
 
 // File filter to allow only image files (jpg, jpeg, png)
-export const fileFilter = (
-    req: Request,
-    file: Express.Multer.File,
-    callback: FileFilterCallback
-): void => {
+export const fileFilter = (req: Request, file: Express.Multer.File, callback: FileFilterCallback): void => {
     if (
         file.mimetype === 'image/png' ||
         file.mimetype === 'image/jpg' ||
@@ -54,14 +42,11 @@ export const fileFilter = (
     ) {
         callback(null, true); // Accept the file
     } else {
-        // Reject the file and send an error message
-        callback(null, false); // Reject the file, no error object needed
-        // Alternatively, you could use the `next` function for error handling in Express.
-        // next(new Error('Only image files are allowed!'));
+        callback(null, false); // Reject the file and send an error message
     }
 };
 
-// Final Multer configuration
+// Final Multer configuration. Create a ready-to-use Multer instance.
 export const upload = multer({
     storage: fileStorage,
     fileFilter: fileFilter,

@@ -9,10 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createHotel = exports.getAllHotels = void 0;
+exports.modifyHotel = exports.createHotel = exports.getAllHotels = void 0;
 const hotel_1 = require("../models/hotel");
 const fs = require("fs");
 const getAllHotels = (req, res) => {
+    console.log("All hotels reading");
     hotel_1.default.find().then((hotels) => {
         res.status(200).json(hotels);
     }).catch((error) => {
@@ -36,7 +37,8 @@ const createHotel = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             images,
         });
         yield hotel.save();
-        res.status(201).json({ success: true, message: 'Hotel created successfully' });
+        console.log("New hotel created:", hotel);
+        res.status(201).json({ success: true, message: 'Hotel created successfully', hotel });
     }
     catch (error) {
         if (error instanceof Error) {
@@ -45,12 +47,13 @@ const createHotel = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         }
         else {
             console.error("Unexpected error in createHotel:", error);
-            res.status(500).json({ success: false, error: 'An unexpected error occurred.' });
+            res.status(500).json({ success: false, error: 'An unexpected error occurredd.' });
         }
     }
 });
 exports.createHotel = createHotel;
 exports.deleteHotel = (req, res) => {
+    console.log("Hotel deletion");
     // Find the hotel by the ID provided in the request parameters
     hotel_1.default.findOne({ _id: req.params.id })
         .then((hotel) => {
@@ -78,6 +81,8 @@ exports.deleteHotel = (req, res) => {
         })
             .then(() => {
             res.status(200).json({ message: "Hotel deleted!" });
+            console.log("Hotel deleted");
+            console.log(hotel);
         })
             .catch((error) => {
             console.error("Error during deletion:", error);
@@ -90,26 +95,71 @@ exports.deleteHotel = (req, res) => {
     });
 };
 exports.getHotel = (req, res) => {
+    console.log("Hotel reading");
     hotel_1.default.findOne({
         _id: req.params.id
     }).then((hotel) => {
         res.status(200).json(hotel);
+        console.log(hotel);
     }).catch((error) => {
         res.status(404).json({
             error: error
         });
     });
 };
-exports.modifyHotel = (req, res) => {
-    const hotelObject = req.file ? Object.assign(Object.assign({}, JSON.parse(req.body.thing)), { imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}` }) : Object.assign({}, req.body);
-    delete hotelObject._userId;
+const modifyHotel = (req, res) => {
+    console.log("Hotel modification");
+    console.log("req.body : " + JSON.stringify(req.body));
+    // Initialize the hotel object
+    let hotelObject;
+    if (req.files) {
+        // If files are uploaded, handle image updates
+        const images = req.files.map(file => `/uploads/${file.filename}`);
+        hotelObject = Object.assign(Object.assign({}, req.body), { images });
+    }
+    else {
+        // If no new files are uploaded, keep existing data
+        hotelObject = Object.assign({}, req.body);
+    }
     hotel_1.default.findOne({ _id: req.params.id })
-        .then((thing) => {
+        .then((existingHotel) => {
+        if (!existingHotel) {
+            console.log('Hotel not found!');
+            return res.status(404).json({ message: 'Hotel not found!' });
+        }
+        // Handle the deletion of old images if new ones are uploaded
+        if (req.files && existingHotel.images.length > 0) {
+            const imageDeletions = existingHotel.images.map((imagePath) => {
+                const filename = imagePath.split('/uploads/')[1];
+                return new Promise((resolve, reject) => {
+                    fs.unlink(`backend/images/${filename}`, (err) => {
+                        if (err) {
+                            console.error(`Failed to delete file ${filename}:`, err);
+                            return reject(err);
+                        }
+                        resolve();
+                    });
+                });
+            });
+            // Wait until all old images are deleted
+            Promise.all(imageDeletions)
+                .catch((error) => console.error('Error deleting old images:', error));
+        }
+        // Update the hotel with the new data
         hotel_1.default.updateOne({ _id: req.params.id }, Object.assign(Object.assign({}, hotelObject), { _id: req.params.id }))
-            .then(() => res.status(200).json({ message: 'Hotel modified!' }))
-            .catch(error => res.status(401).json({ error }));
+            .then(() => {
+            res.status(200).json({ message: 'Hotel modified!' });
+            console.log('Hotel modified!');
+            console.log(hotelObject);
+        })
+            .catch((error) => {
+            console.error('Error updating hotel:', error);
+            res.status(500).json({ error });
+        });
     })
         .catch((error) => {
-        res.status(400).json({ error });
+        console.error('Error finding hotel:', error);
+        res.status(500).json({ error });
     });
 };
+exports.modifyHotel = modifyHotel;

@@ -9,7 +9,7 @@ import personImg from "@/assets/images/icons/person.png";
 import priceImg from "@/assets/images/icons/price.svg";
 import {HotelProps} from "../types/types.ts";
 
-// const Hotel : React.FC<HotelProps> = (}) => {
+// const Hotel : React.FC<HotelProps> = ({name, description, location, equipments, toKnow,  price,  stars, images}) => {
 const Hotel : React.FC<HotelProps> = () => {
     return (
         <main id={"Hotel"}>
