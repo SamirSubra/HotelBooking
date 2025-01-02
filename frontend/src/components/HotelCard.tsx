@@ -4,7 +4,7 @@ import {HotelProps} from "../types/types";
 import {HOTEL_API_URL} from "../constants.ts";
 
 
-const HotelCard: React.FC<HotelProps> = ({ name, location, stars, images }) => {
+const HotelCard: React.FC<HotelProps> = ({ _id, name, location, stars, images }) => {
     const validatedStars = Math.min(Math.max(stars, 0), 5); // Ensure stars are within a valid range (0-5)
     return (
         <div className="hotel">
@@ -22,7 +22,7 @@ const HotelCard: React.FC<HotelProps> = ({ name, location, stars, images }) => {
                         <p>{location}</p>
                     </div>
                 </span>
-                <a href={`/hotels/${name.toLowerCase().replace(/\s+/g, '-')}`} className="cta">
+                <a href={`/hotel?id=${_id}`} target="_blank" className="cta">
                     Interested
                 </a>
             </div>

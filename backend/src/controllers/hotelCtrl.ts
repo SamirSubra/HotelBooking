@@ -19,14 +19,15 @@ export const getAllHotels = (req: Request, res: Response) => {
 
 export const createHotel = async (req: Request, res: Response) => {
     try {
-        const { name, description = '', location, equipments = '', price, stars } = req.body;
+        const { name, description, location, roomTypes, options, price, stars } = req.body;
         const images = (req.files as Express.Multer.File[]).map(file => `/uploads/${file.filename}`);
 
         const hotel = new Hotel({
             name,
             description,
             location,
-            equipments,
+            roomTypes,
+            options,
             price,
             stars,
             images,

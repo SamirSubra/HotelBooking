@@ -25,13 +25,14 @@ const getAllHotels = (req, res) => {
 exports.getAllHotels = getAllHotels;
 const createHotel = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { name, description = '', location, equipments = '', price, stars } = req.body;
+        const { name, description, location, roomTypes, options, price, stars } = req.body;
         const images = req.files.map(file => `/uploads/${file.filename}`);
         const hotel = new hotel_1.default({
             name,
             description,
             location,
-            equipments,
+            roomTypes,
+            options,
             price,
             stars,
             images,
