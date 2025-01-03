@@ -1,6 +1,7 @@
 import starImg from "@icons/star.png";
 import locationImg from "@icons/location.png";
 import priceImg from "@icons/price.svg";
+import blankImg from "@images/blank_bg.jpg";
 import {HotelProps} from "../types/types.ts";
 import "@/styles/components/_hotelAdminCard.scss";
 import {HOTEL_API_URL} from "../constants.ts";
@@ -32,7 +33,7 @@ const HotelAdminCard : React.FC<HotelAdminCardProps> = ({_id, name, location, pr
 
     return (
         <div className="hotel-admin-card">
-            <img src={`${HOTEL_API_URL}${images[0]}`} alt="hotel image"/>
+            <img src={images && images.length > 0 ? `${HOTEL_API_URL}${images[0]}` : blankImg}  alt="hotel image"/>
             <div className="right">
                 <div className="row sb">
                     <h3>{name}</h3>

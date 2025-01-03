@@ -24,7 +24,17 @@ if (!fs.existsSync(imageDirectory)) {
 // Multer storage configuration.
 export const fileStorage = multer.diskStorage({
     destination: (req: Request, file: Express.Multer.File, callback: DestinationCallback): void => { // Tells Multer where to save files.
-        callback(null, imageDirectory); // indicates where to save the downloaded file
+        // Check if the request is for a hotel or user and set the corresponding folder
+        const folder = req.body.type === 'hotel' ? 'hotel' : 'user';
+        const destinationPath = path.join(imageDirectory, folder);
+
+        // Ensure the destination directory exists
+        if (!fs.existsSync(destinationPath)) {
+            fs.mkdirSync(destinationPath, { recursive: true });
+        }
+
+        // Provide the destination path to Multer
+        callback(null, destinationPath);
     },
     filename: (req: Request, file: Express.Multer.File, callback: FileNameCallback): void => { // Sets the name of the downloaded file
         const name = file.originalname.split(' ').join('_').split('.')[0]; // Remove the existing extension

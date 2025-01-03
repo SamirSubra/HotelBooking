@@ -9,3 +9,13 @@ export interface HotelProps {
     stars: number;
     images: string[];
 }
+
+
+export interface UserProps {
+    firstName: string;
+    lastName: string;
+    age: number;
+    username: string;
+    password: string;
+    profilePhoto: string;
+}

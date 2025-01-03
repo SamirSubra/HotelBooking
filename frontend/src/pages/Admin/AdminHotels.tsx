@@ -6,7 +6,7 @@ import {HOTEL_API_URL} from "../../constants.ts";
 const AdminHotels = () => {
     const hotelList = useRef<HTMLDivElement | null>(null);
     const dotNavigation = useRef<HTMLDivElement | null>(null);
-    const [hotels, setHotels] = useState<HotelProps[]>([]); // State for hotels
+    const [hotels, setHotels] = useState<HotelProps[]>([]); // State for hotel
     const [error, setError] = useState<string | null>(null); // State for errors
 
     const handleDeleteHotel = (id: string) => {
@@ -14,11 +14,11 @@ const AdminHotels = () => {
     };
 
     useEffect(() => {
-        // Fetch hotels from the backend
+        // Fetch hotel from the backend
         fetch(HOTEL_API_URL)
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error("Failed to fetch hotels");
+                    throw new Error("Failed to fetch hotel");
                 }
                 return response.json();
             })
@@ -75,7 +75,7 @@ const AdminHotels = () => {
                 }
             }
         }
-    }, [hotels]); // Re-run dots logic when hotels change
+    }, [hotels]); // Re-run dots logic when hotel change
 
 
     return (

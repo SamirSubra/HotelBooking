@@ -3,8 +3,9 @@ import locationImg from "@/assets/images/icons/location.png";
 import {HotelProps} from "../types/types";
 import {HOTEL_API_URL} from "../constants.ts";
 
+type HotelCardProps = Pick<HotelProps, '_id' | 'name' | 'location' | 'stars' | 'images'>;
 
-const HotelCard: React.FC<HotelProps> = ({ _id, name, location, stars, images }) => {
+const HotelCard: React.FC<HotelCardProps> = ({ _id, name, location, stars, images }) => {
     const validatedStars = Math.min(Math.max(stars, 0), 5); // Ensure stars are within a valid range (0-5)
     return (
         <div className="hotel">

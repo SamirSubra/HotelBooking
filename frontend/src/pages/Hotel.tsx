@@ -9,14 +9,14 @@ import {HotelProps} from "../types/types.ts";
 import {useEffect, useState} from "react";
 import {HOTEL_API_URL} from "../constants.ts";
 
-const Hotel : React.FC<HotelProps> = () => {
+const Hotel = () => {
     const[hotel, setHotel] = useState<HotelProps>();
     const [error, setError] = useState<string | null>(null); // State for errors
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get("id");
-        // Fetch hotels from the backend
+        // Fetch hotel from the backend
         fetch(`${HOTEL_API_URL}/${id}`)
             .then((response) => {
                 if (!response.ok) {
@@ -105,6 +105,14 @@ const Hotel : React.FC<HotelProps> = () => {
                         <div className="box">
                             <h3>Description</h3>
                             <p>{hotel.description}</p>
+                        </div>
+                        <div className="box">
+                            <h3>Options</h3>
+                            <ul>
+                                {hotel.options.map((elt, idx) => (
+                                    <li key={idx}>{elt}</li>
+                                ))}
+                            </ul>
                         </div>
                     </div>
                     <div className="box vertical">

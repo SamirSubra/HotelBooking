@@ -6,13 +6,13 @@ import Footer from "./layouts/Footer.tsx";
 import Login from "./pages/Login.tsx";
 import SignUp from "./pages/SignUp.tsx";
 import Hotel from "./pages/Hotel.tsx";
-import Profil from "./pages/Profil.tsx";
 import Admin from "./pages/Admin/Admin.tsx";
 import "@/styles/index.scss";
 import AdminUsers from "./pages/Admin/AdminUsers.tsx";
 import AdminHotels from "./pages/Admin/AdminHotels.tsx";
 import AdminCreateHotel from "./pages/Admin/AdminCreateHotel.tsx";
 import AdminModifyHotel from "./pages/Admin/AdminModifyHotel.tsx";
+import User from "./pages/User.tsx";
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
               <Route path="/hotel" element={<Hotel/>}/>
               <Route path="/login" element={<Login/>}/>
               <Route path="/signup" element={<SignUp/>}/>
-              <Route path="/profil" element={<Profil/>}/>
+              <Route path="/user" element={<User/>}/>
               <Route path="/admin" element={<Admin/>}>
                   <Route path="users" element={<AdminUsers/>}/>
                   <Route path="hotels" element={<AdminHotels/>}/>

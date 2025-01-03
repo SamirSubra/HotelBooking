@@ -4,20 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ff03d7d-7bd4-43f4-b82b-b4621d127ebf" name="Changes" comment="Fix : modification problem">
+    <list default="true" id="0ff03d7d-7bd4-43f4-b82b-b4621d127ebf" name="Changes" comment="Add : new hotel properties +">
+      <change afterPath="$PROJECT_DIR$/backend/images/user/default-profile-photo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/controllers/userCtrl.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/models/user.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/routes/user.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/User.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/dist/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/dist/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/dist/controllers/hotelCtrl.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/dist/controllers/hotelCtrl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/dist/models/hotel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/dist/models/hotel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/app.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/controllers/hotelCtrl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/hotelCtrl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/models/hotel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/hotel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/middlewares/multer-config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/middlewares/multer-config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/AuthForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AuthForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/HotelAdminCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HotelAdminCard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/HotelCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HotelCard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/HotelForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/HotelForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/constants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Admin/AdminHotels.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Admin/AdminHotels.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home/Section2.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home/Section2.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/Hotel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Hotel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/layouts/Footer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/layouts/Footer.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Profil.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/styles/pages/Admin.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/pages/Admin.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/pages/Hotel.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/pages/Hotel.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles/pages/Profil.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/pages/User.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/types/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/types/types.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,6 +91,10 @@
       <recent name="C:\Users\mlaat\Documents\Web\projects\Perso\HotelBooking\backend\src\middlewares" />
       <recent name="C:\Users\mlaat\Documents\Web\projects\Perso\HotelBooking\backend\src\images" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mlaat\Documents\Web\projects\Perso\HotelBooking\backend\images\user" />
+      <recent name="C:\Users\mlaat\Documents\Web\projects\Perso\HotelBooking\backend\images" />
+    </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -100,7 +115,7 @@
       <workItem from="1733486424427" duration="6594000" />
       <workItem from="1734814420979" duration="32000" />
       <workItem from="1734861681270" duration="21228000" />
-      <workItem from="1735130887522" duration="106013000" />
+      <workItem from="1735130887522" duration="123435000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -134,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735673563823</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add : new hotel properties +">
+      <option name="closed" value="true" />
+      <created>1735812231303</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1735812231303</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,6 +168,7 @@
     <MESSAGE value="second commit" />
     <MESSAGE value="Add : admin crud functionnalities" />
     <MESSAGE value="Fix : modification problem" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix : modification problem" />
+    <MESSAGE value="Add : new hotel properties +" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add : new hotel properties +" />
   </component>
 </project>

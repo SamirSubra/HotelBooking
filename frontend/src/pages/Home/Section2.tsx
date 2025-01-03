@@ -17,7 +17,7 @@ const Section2 = () => {
 
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
-    const [hotels, setHotels] = useState<HotelProps[]>([]); // State for hotels
+    const [hotels, setHotels] = useState<HotelProps[]>([]); // State for hotel
     const [error, setError] = useState<string | null>(null); // State for errors
 
     const handleStartDate = (date: Date | null) => {
@@ -33,11 +33,11 @@ const Section2 = () => {
     };
 
     useEffect(() => {
-        // Fetch hotels from the backend
+        // Fetch hotel from the backend
         fetch(HOTEL_API_URL)
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error("Failed to fetch hotels");
+                    throw new Error("Failed to fetch hotel");
                 }
                 return response.json();
             })
@@ -94,7 +94,7 @@ const Section2 = () => {
                 }
             }
         }
-    }, [hotels]); // Re-run dots logic when hotels change
+    }, [hotels]); // Re-run dots logic when hotel change
 
     return (
         <section className="section_2">

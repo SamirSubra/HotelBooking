@@ -3,7 +3,7 @@ import {Request, Response} from 'express';
 import * as fs from "fs";
 
 export const getAllHotels = (req: Request, res: Response) => {
-    console.log("All hotels reading");
+    console.log("All hotel reading");
     Hotel.find().then(
         (hotels) => {
             res.status(200).json(hotels);
@@ -20,7 +20,7 @@ export const getAllHotels = (req: Request, res: Response) => {
 export const createHotel = async (req: Request, res: Response) => {
     try {
         const { name, description, location, roomTypes, options, price, stars } = req.body;
-        const images = (req.files as Express.Multer.File[]).map(file => `/uploads/${file.filename}`);
+        const images = (req.files as Express.Multer.File[]).map(file => `/hotels/uploads/${file.filename}`);
 
         const hotel = new Hotel({
             name,
@@ -62,7 +62,7 @@ exports.deleteHotel = (req: Request, res: Response) => {
 
             // Delete each image associated with the hotel
             const imageDeletions = hotel.images.map((imagePath) => {
-                const filename = imagePath.split('/uploads/')[1];
+                const filename = imagePath.split('/hotels/uploads/')[1];
                 return new Promise<void>((resolve, reject) => {
                     fs.unlink(`backend/images/${filename}`, (err) => {
                         if (err) {
@@ -118,13 +118,13 @@ exports.getHotel = (req: Request, res : Response) => {
 
 export const modifyHotel = (req: Request, res: Response) => {
     console.log("Hotel modification");
-    console.log("req.body : " + JSON.stringify(req.body));
     // Initialize the hotel object
     let hotelObject: any;
 
-    if (req.files) {
+    if (req.files && Array.isArray(req.files) && req.files.length > 0) {
         // If files are uploaded, handle image updates
-        const images = (req.files as Express.Multer.File[]).map(file => `/uploads/${file.filename}`);
+        console.log("req.files -->" + req.files);
+        const images = (req.files as Express.Multer.File[]).map(file => `/hotels/uploads/${file.filename}`);
         hotelObject = {
             ...req.body,
             images,
@@ -142,9 +142,9 @@ export const modifyHotel = (req: Request, res: Response) => {
             }
 
             // Handle the deletion of old images if new ones are uploaded
-            if (req.files && existingHotel.images.length > 0) {
+            if (req.files && Array.isArray(req.files) && req.files.length > 0  && existingHotel.images.length > 0) {
                 const imageDeletions = existingHotel.images.map((imagePath) => {
-                    const filename = imagePath.split('/uploads/')[1];
+                    const filename = imagePath.split('/hotels/uploads/')[1];
                     return new Promise<void>((resolve, reject) => {
                         fs.unlink(`backend/images/${filename}`, (err) => {
                             if (err) {

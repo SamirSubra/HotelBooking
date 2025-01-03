@@ -1,19 +1,47 @@
-import "@/styles/pages/Profil.scss";
-import profilImg from "@/assets/images/profil_photo.png";
-import popHotelImg from "@/assets/images/popular_hotel.jpg";
-import starImg from "@/assets/images/icons/star.png";
-import priceImg from "@/assets/images/icons/price.svg";
-import locationImg from "@/assets/images/icons/location.png";
+import {useEffect, useState} from 'react';
+import {UserProps} from "../types/types.ts";
+import popHotelImg from "@images/popular_hotel.jpg";
+import starImg from "@icons/star.png";
+import locationImg from "@icons/location.png";
+import priceImg from "@icons/price.svg";
+import {USER_API_URL} from "../constants.ts";
+import "@/styles/pages/User.scss";
+const User = () => {
+    const[user, setProfile] = useState<UserProps>();
+    const [error, setError] = useState<string | null>(null); // State for errors
 
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+        // Fetch users from the backend
+        fetch(`${USER_API_URL}/${id}`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Failed to fetch the user");
+                }
+                return response.json();
+            })
+            .then((data: UserProps) => setProfile(data))
+            .catch((err) => setError(err.message)); // Handle errors
+    }, []);
 
+    // Display error message if there's an error
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
-const Profil = () => {
+    if(!user){
+        return(
+            <div>No User data available</div>
+        )
+    }
+
     return (
-        <main id="Profil">
+        <main id="User">
             <section className="section_1">
                 <div className="container">
                     <div className="left">
-                        <img src={profilImg} alt="Profil image"/>
+                        <img src={USER_API_URL + user.profilePhoto} alt="Profil image"/>
                         <div className="buttons">
                             <button className="btn green">Change image</button>
                             <button className="btn red">Delete image</button>
@@ -94,4 +122,4 @@ const Profil = () => {
     );
 };
 
-export default Profil;
+export default User;

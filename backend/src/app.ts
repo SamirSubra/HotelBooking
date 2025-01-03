@@ -2,6 +2,7 @@ import * as express from 'express';
 import mongoose from 'mongoose';
 
 import hotelRoutes from "./routes/hotel";
+import userRoutes from "./routes/user";
 const app: express.Application = express();
 
 mongoose.connect('mongodb+srv://mlatax976:JjFniAoW7OxvBkK7@cluster0.lxcsl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
@@ -20,14 +21,16 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-// all images located in the HotelBooking/backend/images directory will be accessible via the base URL http://localhost:3000/uploads/.
-app.use('/hotels/uploads', express.static(process.cwd() + "/backend/images"));
+// all images located in the HotelBooking/backend/images directory will be accessible via the base URL http://localhost:3000/...
+app.use('/hotels/uploads', express.static(process.cwd() + "/backend/images/hotel"));
+app.use('/users/uploads', express.static(process.cwd() + "/backend/images/user"));
 
 app.use(express.json());
 
 // Middleware to parse form data (if classic forms are sent)
 app.use(express.urlencoded({ extended: true })); // parse data sent via a classic form
 
+app.use("/users", userRoutes);
 app.use("/hotels", hotelRoutes);
 
 export default app;

@@ -211,9 +211,7 @@ const HotelForm : React.FC<HotelFormData> = ({id}) => {
                         <div className="images">
                             {[0, 1, 2, 3].map((index) => (
                                 <div className="photo" key={index}>
-                                    <img
-
-                                        ref={(el) => (imageRefs.current[index] = el)}
+                                    <img ref={(el) => (imageRefs.current[index] = el)}
                                         src={hotel.images[index] ? HOTEL_API_URL + hotel.images[index] : blankImg}
                                         alt={`image ${index + 1}`}
                                     />
@@ -225,9 +223,6 @@ const HotelForm : React.FC<HotelFormData> = ({id}) => {
                                         id={`image${index + 1}`}
                                         accept="image/*"
                                         onChange={() => handleFileChange(index)}
-
-                                        {...(index === 0 ? { required: true } : {})}
-
                                     />
                                 </div>
                             ))}
@@ -236,7 +231,7 @@ const HotelForm : React.FC<HotelFormData> = ({id}) => {
                     <div className="input textarea">
                         <label htmlFor="name">Description</label>
                         <textarea name="description" placeholder="Description"
-                                  id="description" required>{hotel.description}</textarea>
+                                  id="description" defaultValue={hotel.description} required></textarea>
                     </div>
                 </div>
                 <input type="submit" value={!id ? "Create" : "Modify"} className="cta"/>
